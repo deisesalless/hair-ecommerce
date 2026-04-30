@@ -1,5 +1,5 @@
 CREATE TABLE stock (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     product_variation_id BIGINT NOT NULL,
     quantity INT NOT NULL,
     minimum_quantity INT DEFAULT 0,
