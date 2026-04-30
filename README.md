@@ -6,37 +6,43 @@
 
 ## 📋 CHECKLIST GERAL
 
-### Semana 1-2: Fundação (CRUD Produto)
+### Semana 1-2: Fundação (CRUD das tabelas)
 - [x] Spring Boot 3.5 + config manual (sem Spring Initializr "mágico")
-- [ ] PostgreSQL + Docker Compose
-- [ ] Flyway: criação de todas as tabelas (V1__create_tables.sql)
-- [ ] Seed de dados (marcas, categorias, produtos, variações, estoque)
+- [x] PostgreSQL + Docker Compose
+- [x] Flyway: criação de todas as tabelas (V1__create_tables.sql)
+- [x] Seed de dados (marcas, categorias, produtos, variações, estoque)
 - [ ] CRUD Produto completo (entity → repository → service → controller)
 - [ ] Logs estruturados (JSON format, não println)
 - [ ] Exceções customizadas + @ControllerAdvice global
 - [ ] DTOs + MapStruct
 - [ ] Profiles (dev/test/prod) — necessário pra separar H2/PostgreSQL
 
-### Semana 3: Testes + Qualidade
+### Semana 3: Evoluir paginação e filtros SQL
+- [ ] Paginação e ordenação com Spring Data JPA
+- [ ] Filtros avançados (ex: produtos por marca, variações por categoria)
+- [ ] Filtros avançados (ex: estoque por produto, variação, ou alerta de estoque baixo)
+
+### Semana 4: Testes + Qualidade
 - [ ] Testes unitários (JUnit 5 + Mockito)
 - [ ] Testes de integração com **Testcontainers** (PostgreSQL real, não H2)
 - [x] SonarQube local-plugin na IDE (code smells, bugs, cobertura)
 - [ ] Swagger/OpenAPI (SpringDoc)
 
-### Semana 4: CI/CD + Deploy
+### Semana 5: CI/CD + Deploy
 - [ ] GitHub Actions (build, test, SonarQube scan)
 - [ ] Dockerização da aplicação (multistage build)
 - [ ] Deploy no Render/Railway/Fly.io
 
-### Semana 5-6: Mensageria
+### Semana 6-7: Mensageria
 - [ ] RabbitMQ no Docker Compose
 - [ ] Endpoint de "baixa de estoque" → publica evento
 - [ ] Consumer processa e atualiza estoque
 - [ ] Regra: estoque < 10 → publica "ESTOQUE_BAIXO"
 - [ ] Consumer de alerta (simula email via log estruturado)
 
-### Semana 7+: Evolução Arquitetural
+### Semana 8+: Evolução Arquitetural
 - [ ] CRUD de Pedidos (justifica mensageria de verdade)
+- [ ] Alerta de estoque baixo real (envia email - analisar hospedagem cloud com SMTP gratuito)
 - [ ] JWT + Spring Security (stateless, roles: CLIENTE/ADMIN)
 - [ ] Query avançada (JPQL nativo, Specifications, ou QueryDSL)
 - [ ] Métricas com Micrometer + Prometheus
@@ -46,19 +52,20 @@
 
 ## 🛠️ STACK TÉCNICA — CHECKLIST DE DEPENDÊNCIAS
 
-> **Regra:** Só marque como feito quando estiver **configurado e funcionando**, não quando adicionar no `pom.xml`.
+> **Regra:** Marcar como feito quando estiver **configurado e funcionando**.
 
 ### Core
 - [x] Spring Boot 3.5 (config manual `pom.xml`)
 - [ ] Spring Web (MVC)
 - [ ] Spring Data JPA
-- [ ] Spring Boot DevTools
+- [x] Spring Boot DevTools
 - [ ] Spring Boot Starter Validation
 - [ ] Spring Boot Starter Test
+- [ ] Spring Testes (usar Testcontainers para integração e biblioteca Java Faker para dados de teste)
 
 ### Banco de Dados & Migração
-- [ ] PostgreSQL (runtime)
-- [ ] Flyway
+- [x] PostgreSQL (runtime)
+- [x] Flyway
 - [ ] H2 **APENAS para testes de unidade** *(nunca para integração — usar Testcontainers)*
 
 ### Mapeamento & Utilitários
@@ -89,6 +96,13 @@
 - [ ] GitHub Actions
 - [ ] SonarQube Community (Docker)
 
+### Ordem de implementação
+1. [ ] CRUD de produto + testes unitários e talvez de integração
+2. [ ] CRUD de variação + testes unitários e talvez de integração
+3. [ ] CRUD de estoque + testes unitários e talvez de integração
+4. [ ] Endpoint de baixa de estoque
+5. [ ] Simular mensageria (mesmo que fake)
+
 ---
 
 ## 🏗️ ARQUITETURA — EVOLUÇÃO PLANEJADA
@@ -110,7 +124,7 @@ FASE 2 (Semana 7+): Clean Architecture / DDD
 └── config (beans, profiles, security)
 ```
 
-> **💡 Atenção:** Não pular direto pra DDD. Precisa identificar e **sentir a dor** de ter regras de negócio espalhadas pra entender POR QUE separar domain de infrastructure.
+> **💡 Atenção:** Não pular direto pra DDD. Preciso identificar e **sentir a dor** de ter regras de negócio espalhadas pra entender POR QUE separar domain de infrastructure.
 
 ---
 
