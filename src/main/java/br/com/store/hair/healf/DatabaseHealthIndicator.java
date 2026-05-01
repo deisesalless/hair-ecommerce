@@ -1,4 +1,4 @@
-package br.com.store.hair.config;
+package br.com.store.hair.healf;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
