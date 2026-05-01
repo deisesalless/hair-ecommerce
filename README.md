@@ -7,6 +7,8 @@
 
 🔗 **Repositório:** [https://github.com/deisesalless/hair-ecommerce](link)
 
+Como rodar o projeto localmente: [`docs/setup.md`](docs/setup.md)
+
 🚀 **Deploy:** Em breve — primeiro deploy após CRUD completo de brand + endpoint /health
 
 ---
@@ -27,9 +29,6 @@
 ### Milestone 1: CRUD Produto + Qualidade (até 15/05)
 - [ ] CRUD completo (entity → repository → service → controller)
     - [x] brand
-      - [ ] criar (em andamento)
-      - [x] listar + busca por id
-      - [ ] atualizar + ativar + desativar
     - [ ] category
         - [ ] criar (em andamento)
         - [ ] listar + busca por id
@@ -47,7 +46,7 @@
         - [ ] listar + busca por id
         - [ ] atualizar + ativar + desativar
 - [x] DTOs (Record) + MapStruct
-- [ ] Exceções customizadas + @ControllerAdvice
+- [x] Exceções customizadas + @RestControllerAdvice
 - [ ] Logs estruturados (JSON)
 - [ ] Profiles (dev/test/prod)
 - [ ] **Deploy inicial** (Render/Railway — mesmo que só health check)
@@ -144,10 +143,6 @@ Fase 1: Arquitetura em Camadas
 
 ---
 
-## 🎯 APRENDIZADOS E DIFICULDADES
+## 🎯 DECISÕES TÉCNICAS E APRENDIZADOS/DIFICULDADES
 
-**30/04/2026 — Migrations e auditoria de dados**
-> Utilização das migrations poderia ter sido mais otimizada. Nas tabelas iniciais
-> não incluí `created_at`/`updated_at`, o que dificultará filtros temporais e
-> relatórios no futuro. **Ação:** revisar schema antes do primeiro deploy
-> (Milestone 1).
+Registro de decisões arquiteturais e trade-offs: [`docs/decisions.md`](docs/decisions.md)
