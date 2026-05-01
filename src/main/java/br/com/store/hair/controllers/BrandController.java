@@ -1,22 +1,21 @@
 package br.com.store.hair.controllers;
 
+import br.com.store.hair.dto.BrandCreateDTO;
 import br.com.store.hair.dto.BrandDTO;
 import br.com.store.hair.services.BrandService;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/brands")
 @RequiredArgsConstructor
+@Validated
 public class BrandController {
     private final BrandService service;
 
@@ -27,8 +26,31 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BrandDTO> findById(@PathVariable @NotNull @Positive Integer id) {
-        Optional<BrandDTO> brandDTO = service.findById(id);
-        return brandDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<BrandDTO> findById(@PathVariable @Positive(message = "O id deve ser um valor positivo maior que zero") Integer id) {
+        return ResponseEntity.ok(service.findById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<BrandDTO> createNewBrand(@RequestBody @Valid BrandCreateDTO dto) {
+        BrandDTO createdBrand = service.createNewBrand(dto);
+        return ResponseEntity.ok(createdBrand);
+    }
+
+    @DeleteMapping("/disable/{id}")
+    public ResponseEntity<Void> disableBrand(@PathVariable @Positive(message = "O id deve ser um valor positivo maior que zero") Integer id) {
+        service.disableBrand(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/enable/{id}")
+    public ResponseEntity<Void> enableBrand(@PathVariable @Positive(message = "O id deve ser um valor positivo maior que zero") Integer id) {
+        service.enableBrand(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{id}/update-name")
+    public ResponseEntity<BrandDTO> updateBrandName(@PathVariable @Positive(message = "O id deve ser um valor positivo maior que zero") Integer id,
+                                                @RequestParam String newName) {
+        return ResponseEntity.ok(service.updateBrandName(id, newName));
     }
 }
