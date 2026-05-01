@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,5 +17,9 @@ public class BrandService {
 
     public List<BrandDTO> findAll() {
         return mapper.toListDTO(repository.findAll());
+    }
+
+    public Optional<BrandDTO> findById(Integer id) {
+        return repository.findById(id).map(mapper::toDTO);
     }
 }
