@@ -18,7 +18,7 @@
 | Configuração Spring Boot 3.5 | ✅ | Gerado via Spring Initializr, com inclusão manual de dependências (Flyway, MapStruct, PostgreSQL) |
 | PostgreSQL + Docker Compose | ✅ | Banco rodando local |
 | Flyway + seed de dados | ✅ | 5 tabelas, dados de exemplo |
-| SonarQube local | ✅ | Plugin IDE configurado |
+| SonarLint local | ✅ | Plugin IDE configurado |
 
 ---
 
@@ -138,7 +138,7 @@ Fase 1: Arquitetura em Camadas
 | 27/04 | Spring Initializr como ponto de partida | Produtividade inicial, foco em lógica de negócio | Configuração 100% manual do `pom.xml` |
 | 27/04 | PostgreSQL + Docker Compose             | Ambiente próximo de produção                                                    | H2 para desenvolvimento |
 | 28/04 | Seed Data + Flyway migrations           | Analisar estrutura do banco de dados com o teste de listagem e encontrar por id | Adicionar depois  |
-| 28/04 | SonarQube desde o início                | Qualidade como hábito, não afterthought                                         | Adicionar depois |
+| 28/04 | SonarLint desde o início                | Qualidade como hábito, não afterthought                                         | Adicionar depois |
 | 30/04 | Lombok + MapStruct habilitados          | Reduzir boilerplate e separação da entidade e DTO                               | Records (limitado para JPA) |
 | 30/04 | Record DTOs em vez de classes           | Imutabilidade, menos boilerplate, nativo do Java | Classes tradicionais com Lombok @Data |
 
