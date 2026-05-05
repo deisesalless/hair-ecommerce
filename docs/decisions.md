@@ -22,26 +22,6 @@
 > residem em servidores distintos — e alinha o projeto ao padrão ISO 8601 para APIs REST.
 >
 
-
-**01/05/2026 — Tratamento Global de Exceções com `@RestControllerAdvice`**
-
-> Migrei de `@ControllerAdvice` para `@RestControllerAdvice` para centralizar o tratamento de exceções HTTP em 
-> toda a aplicação. A anotação compõe `@ControllerAdvice` + `@ResponseBody`, eliminando a necessidade de decorar 
-> métodos do handler com `@ResponseBody` explicitamente.
->
-> Implementei hierarquia de exceções com `BusinessException` como classe base para regras de domínio, separando 
-> **falhas técnicas** (500) de **violações de negócio** (400/404/409). As exceções customizadas 
-> (`ResourceNotFoundException`) são lançadas nos Services e traduzidas para respostas padronizadas pelo handler, 
-> garantindo que o cliente sempre receba JSON estruturado com `timestamp`, `status`, `message` e `path` — nunca 
-> stack trace exposta.
->
-> Optei por não estender `ResponseEntityExceptionHandler` e usar `@ExceptionHandler` diretamente. Isso evita 
-> conflitos de nullabilidade (`@Nullable` vs `@NonNullApi`) reportados pelo SonarLint e reduz acoplamento com 
-> classes internas do Spring MVC — suficiente para a complexidade atual do projeto.
->
-> **Pendência técnica:** estudar e avaliar adoção de `ProblemDetail` (RFC 7807), padrão moderno do Spring Boot 
-> 3.2+ para APIs REST.
-
 **01/05/2026 — `@Transactional(readOnly = true)` em Consultas**
 > Adotei `@Transactional(readOnly = true)` em todos os métodos de leitura do `BrandService`.
 > Embora o Spring Data JPA já gerencie transações internamente em repositories, a anotação
@@ -53,4 +33,26 @@
 > Métodos de escrita (`create`, `update`, `disable`) permanecem com `@Transactional` padrão
 > (`readOnly = false`), garantindo que modificações sejam commitadas corretamente.
 
-**01/05/2026 — Tratamento Global de Exceções com `@RestControllerAdvice`**
+**01/05/2026 — Health Check com Spring Boot Actuator**
+
+> Adicionei endpoint `/actuator/health` via Spring Boot Actuator para monitoramento
+> da aplicação. Implementei `DatabaseHealthIndicator` customizado que valida
+> conexão com PosgteSQL em tempo real, retornando `UP` ou `DOWN` com detalhes.
+>
+> Em produção, health checks são consumidos por load balancers (AWS ALB) e
+> orquestradores (Kubernetes probes) para decisões automáticas de roteamento
+> e reinicialização. Configurei `show-details: always` em dev/test e
+> `when_authorized` para produção, evitando vazamento de informações de infraestrutura.
+>
+> **Pendência:** implementar separação `livenessProbe` vs `readinessProbe`
+> quando migrar para Kubernetes.
+
+**01/05/2026 - Anotação @Sl4j**
+
+> Optei por usar `@Slf4j` do Lombok para logs estruturados e padronizados. Essa anotação 
+> evita boilerplate de declaração manual do logger (`private static final Logger log = 
+> LoggerFactory.getLogger(BrandService.class);`) e garante que todas as classes tenham um 
+> logger consistente, facilitando a manutenção e leitura dos logs em ambientes de produção.
+> 
+>  **Pendência:** analisar a implementação de um log JSON (MDC/traceId) quando o projeto evoluir para eventos.
+

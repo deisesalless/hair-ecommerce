@@ -1,13 +1,11 @@
 # 🧴 E-commerce de Produtos de Cabelo
 
-> **Status:** Em desenvolvimento | **Início:** 27/04/2026 | **Última atualização:** 01/05/2026
+> **Status:** Em desenvolvimento | **Início:** 27/04/2026 | **Última atualização:** 04/05/2026
 >
 > Projeto de portfólio para consolidação de skills em Java, Spring Boot,
 > CI/CD e cloud. Evolução documentada por milestones.
 
-🔗 **Repositório:** [https://github.com/deisesalless/hair-ecommerce](link)
-
-Como rodar o projeto localmente: [`docs/setup.md`](docs/setup.md)
+🔗 Como rodar o projeto localmente: [`docs/setup.md`](docs/setup.md)
 
 🚀 **Deploy:** Em breve — primeiro deploy após CRUD completo de brand + endpoint /health
 
@@ -26,28 +24,16 @@ Como rodar o projeto localmente: [`docs/setup.md`](docs/setup.md)
 
 ## 🎯 PRÓXIMO MILESTONE (em andamento)
 
-### Milestone 1: CRUD Produto + Qualidade (até 15/05)
+### Milestone 1: CRUD Produto + Qualidade (~2 semanas)
 - [ ] CRUD completo (entity → repository → service → controller)
     - [x] brand
     - [ ] category
-        - [ ] criar (em andamento)
-        - [ ] listar + busca por id
-        - [ ] atualizar + ativar + desativar
     - [ ] product
-        - [ ] criar (em andamento)
-        - [ ] listar + busca por id
-        - [ ] atualizar + ativar + desativar
     - [ ] product_variation
-        - [ ] criar (em andamento)
-        - [ ] listar + busca por id
-        - [ ] atualizar + ativar + desativar
     - [ ] stock
-        - [ ] criar (em andamento)
-        - [ ] listar + busca por id
-        - [ ] atualizar + ativar + desativar
 - [x] DTOs (Record) + MapStruct
 - [x] Exceções customizadas + @RestControllerAdvice
-- [ ] Logs estruturados (JSON)
+- [x] Logs
 - [ ] Profiles (dev/test/prod)
 - [ ] **Deploy inicial** (Render/Railway — mesmo que só health check)
 
@@ -97,10 +83,11 @@ Fase 1: Arquitetura em Camadas
 ## 🛠️ STACK TÉCNICA
 
 ### Implementado
-- Java 21, Spring Boot 3.5, PostgreSQL, Flyway, Docker Compose, MapStruct, Lombok, Spring Validation, DTOs
+- Java 21, Spring Boot 3.5, PostgreSQL, Flyway, Docker Compose, MapStruct, Lombok, 
+Spring Validation, DTOs, Logs
 
 ### Em implementação (Milestone 1)
-- Spring Web, Spring Data JPA, Logs estruturados, Exceções customizadas
+- Spring Web, Spring Data JPA, Exceções customizadas
 
 ### Planejado (Backlog)
 - JUnit 5, Mockito, Jacoco, Testcontainers, SpringDoc, RabbitMQ, Spring Security, JWT,
