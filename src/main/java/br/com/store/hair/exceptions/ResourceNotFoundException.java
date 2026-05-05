@@ -9,4 +9,8 @@ public class ResourceNotFoundException extends BusinessException {
     public ResourceNotFoundException(String resource, Object id) {
         super(resource + " não encontrado(a) com ID: " + id, HttpStatus.NOT_FOUND);
     }
+
+    public ResourceNotFoundException(String resource) {
+        super(resource + " não encontrado(a)", HttpStatus.NOT_FOUND);
+    }
 }
