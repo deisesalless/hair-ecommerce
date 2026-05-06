@@ -11,7 +11,7 @@ import java.util.Map;
 public class ErrorResponse {
     private Instant timestamp;
     private int status;
-    private String error;
-    private String path;
+//    private String error;
+//    private String path;
     private Map<String, String> errors;
 }
