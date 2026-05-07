@@ -56,3 +56,15 @@
 > 
 >  **Pendência:** analisar a implementação de um log JSON (MDC/traceId) quando o projeto evoluir para eventos.
 
+**06/05/2026 - Deploy**
+
+> O deploy inicial foi feito no Railway, criei o banco de dados PostgreSQL e configurei as variáveis de ambiente 
+> (DB_URL, DB_USER, DB_PASSWORD). O banco foi populado com os dados de seed (Flyway) e o endpoint de listagem de marcas 
+> (`GET /api/v1/brands`) foi testado com sucesso, confirmando a integração completa entre aplicação e banco em ambiente 
+> de produção. Interface gráfica fácil de aprender e entender. Aprendi a olhar logs do deploy e a entender as variaveis
+> de ambiente do servidor.
+> 
+> **Pendência:** configurar CI/CD com GitHub Actions para automação do build, testes e deploy, evoluir deploy para a AWS
+> com EC2 e RDS utilizando conta gratuita, também verificar outros serviços de monitoramento gratuitos, não esquecer
+> da fila, se possível implementar lógica de "fila morta".
+
