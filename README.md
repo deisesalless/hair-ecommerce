@@ -1,6 +1,6 @@
 # 🧴 E-commerce de Produtos de Cabelo
 
-> **Status:** Em desenvolvimento | **Início:** 27/04/2026 | **Última atualização:** 04/05/2026
+> **Status:** Em desenvolvimento | **Início:** 27/04/2026 | **Última atualização:** 06/05/2026
 >
 > Projeto de portfólio para consolidação de skills em Java, Spring Boot,
 > CI/CD e cloud. Evolução documentada por milestones.
