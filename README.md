@@ -7,7 +7,11 @@
 
 🔗 Como rodar o projeto localmente: [`docs/setup.md`](docs/setup.md)
 
-🚀 **Deploy:** Em breve — primeiro deploy após CRUD completo de brand + endpoint /health
+🚀 **Deploy:** https://hair-ecommerce-production.up.railway.app
+- Para verificar se o deploy está funcionando, acesse: https://hair-ecommerce-production.up.railway.app/actuator/health
+
+- Se rodar localmente a documentação Swagger estará disponível em: http://localhost:8080/swagger-ui/index.html
+- Se rodar na Render/Railway, a documentação Swagger estará disponível em: https://hair-ecommerce-production.up.railway.app/swagger-ui/index.html
 
 ---
 
